@@ -1,0 +1,140 @@
+
+/*
+* Setting
+*/
+$direction       : ltr;
+$columnsNumber   : 12;
+$columnsPrefix   : '';
+
+// screens        | Mobile   | Tablet  | Browser  | Large
+$screensNames   : ('m',       't',      'b',       'l');
+$screensSizes   : (0,         768px,    992px,     1200px);
+$containerWidth : (100%,      750px,    970px,     1170px);
+
+/*
+* Reset
+*/
+@import "normalize.css";
+h1, h2, h3, h4, h5, h6, p {
+  margin: 0;
+}
+ul {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+/*
+* Grid
+*/
+@mixin make-columns($screen, $i)
+{
+  %column#{$screen} {
+    box-sizing: border-box;
+    min-height: 1px;
+    margin: 0;
+    position: relative;
+
+    @if $direction == 'rtl' {
+      float: right;
+    } @else {
+      float: left;
+    }
+  }
+
+  /* columns */
+  @for $i from 1 through $columnsNumber
+  {
+    .#{$columnsPrefix}#{$screen}#{$i} {
+      width: ((100 / $columnsNumber) * $i) * 1%;
+      @extend %column#{$screen};
+    }
+    .push-#{$columnsPrefix}#{$screen}#{$i} {
+      @if $direction == 'rtl' {
+        right: ((100 / $columnsNumber) * $i) * 1%;
+      } @else {
+        left: ((100 / $columnsNumber) * $i) * 1%;
+      }
+    }
+    .pull-#{$columnsPrefix}#{$screen}#{$i} {
+      @if $direction == 'rtl' {
+        left: ((100 / $columnsNumber) * $i) * 1%;
+      } @else {
+        right: ((100 / $columnsNumber) * $i) * 1%;
+      }
+    }
+  }
+
+  .container {
+    width: nth($containerWidth, $i);
+  }
+
+  /* Visibility */
+  @each $item in $screensNames {
+    $idx: index($screensNames, $item);
+    $idx2: index($screensNames, $screen);
+
+    @if $idx <= $idx2 {
+      @if $item == $screen {
+        .#{$item}-hide {display: none !important;}
+        .#{$item}-show {display: block !important;}
+      } @else {
+        .#{$item}-hide {display: block !important;}
+        .#{$item}-show {display: none !important;}
+      }
+    }
+  }
+}
+
+@each $screen in $screensNames {
+  $i: index($screensNames, $screen);
+
+  @if $i == 1 {
+    @include make-columns($screen, $i);
+  }
+  @else {
+    @media (min-width: nth($screensSizes, $i)) {
+      @include make-columns($screen, $i);
+    }
+  }
+}
+
+/*
+* Global
+*/
+body {
+  direction: $direction ;
+}
+
+.container {
+  margin: 0 auto;
+}
+
+.container:after,
+.row:before,
+.row:after,
+.clearfix:before,
+.clearfix:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+.row,
+.clearfix {
+  zoom: 1;
+}
+
+/*
+* Alignment
+*/
+.right {
+  float: right !important;
+}
+.left {
+  float: left !important;
+}
+.center {
+  float: none !important;
+  margin: 0 auto;
+  display: block;
+}
