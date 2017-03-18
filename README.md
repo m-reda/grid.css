@@ -47,3 +47,16 @@ $screensNames     | *Array*   | ('m', 't', 'b', 'l')
 $screensSizes     | *Array*   | (0, 768px, 992px, 1200px)
 $containerWidth   | *Array*   | (100%, 750px, 970px, 1170px);
 $columnsPrefix    | *String*  | *Empty*
+
+
+-----------
+
+### Example
+```html
+<div class="container">
+    <div class="row">
+        <div class="m6 b4"></div>
+        <div class="m6 b8"></div>
+    </div>
+</div>
+```
