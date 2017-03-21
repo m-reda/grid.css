@@ -41,7 +41,7 @@ Large   | Less than 768px  |	100%
 ### Customize by SASS
 Variable          | Type      | Default Value
 ------------------|-----------|------------------------------
-$direction        | *String*  | trl
+$direction        | *String*  | ltr
 $columnsNumber    | *Integer* | 12
 $screensNames     | *Array*   | ('m', 't', 'b', 'l')
 $screensSizes     | *Array*   | (0, 768px, 992px, 1200px)
