@@ -31,10 +31,10 @@ Large   | .l-show | .l-hide
 ### Container Width
 Screen  | Screen Width     | Container Width
 --------|------------------|----------------
-Mobile  | 1200px or higher |	1170px
-Tablet  | 992px to 1199px  |	970px
-Browser | 768px to 991px   |	750px
-Large   | Less than 768px  |	100%
+Large   | 1200px or higher |	1170px
+Browser | 992px to 1199px  |	970px
+Tablet  | 768px to 991px   |	750px
+Mobile  | Less than 768px  |	100%
 
 -----------
 
